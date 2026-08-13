@@ -6,6 +6,7 @@ const jobSlice = createSlice({
         allJobs:[],
         allAdminJobs:[],
         singleJob:null, 
+        loading:false,
         searchJobByText:"",
         allAppliedJobs:[],
         searchedQuery:"",
