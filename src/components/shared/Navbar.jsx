@@ -18,19 +18,21 @@ const Navbar = () => {
   const navigate = useNavigate();
   // console.log("Redux User:", user);
 
-  const logoutHandler = async ()=>{
-    try{
-       const res= await axios.get(`${USER_API_END_POINT}/logout`,{withCredentials:true});
-       if(res.data.success){
-          dispatch(setUser(null));
-          navigate("/");
-          toast.success(res.data.message);
-       }
-      } catch(error){
-      console.log(error)
-      toast.error(error.response.data.message)
+  const logoutHandler = async () => {
+    try {
+      const res = await axios.get(`${USER_API_END_POINT}/logout`, {
+        withCredentials: true,
+      });
+      if (res.data.success) {
+        dispatch(setUser(null));
+        navigate("/");
+        toast.success(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
     }
-  }
+  };
   return (
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -42,15 +44,21 @@ const Navbar = () => {
 
         <div className="flex items-center gap-12">
           <ul className="flex font-medium items-center gap-5">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/jobs">Jobs</Link>
-            </li>
-            <li>
-              <Link to="/browse">Browse</Link>
-            </li>
+            {
+              user && user.role === 'recruiter' ? (
+                <>
+                   <li><Link to="/admin/companies">Companies</Link></li>
+                   <li><Link to="/admin/jobs">Jobs</Link></li>
+                </>
+              ):(
+                <>
+                  <li><Link to="/">Home</Link></li>
+                  <li><Link to="/jobs">Jobs</Link></li>
+                  <li><Link to="/browse">Browse</Link></li>
+                </>
+              )
+            }
+            
           </ul>
           {!user ? (
             <div className="flex items-center gap-2">
@@ -73,11 +81,11 @@ const Navbar = () => {
                   />
                 </Avatar>
               </PopoverTrigger>
-              <PopoverContent className="w-80">
+              <PopoverContent className="w-80 bg-white">
                 <div className="flex gap-4 space-y-1">
                   <Avatar className="cursor-pointer">
                     <AvatarImage
-                      src={user?.profile?.profilePhoto} 
+                      src={user?.profile?.profilePhoto}
                       alt="@shadcn"
                     />
                   </Avatar>
@@ -89,15 +97,22 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="flex flex-col  text-gray-600">
-                  <div className="flex  items-center text-gray-600">
-                    <User2 />
-                    <Link to="/profile">
-                      <Button variant="link">View Profile</Button>
-                    </Link>
-                  </div>
+                  {
+                    user && user.role ==='student'&& (
+                       <div className="flex  items-center text-gray-600">
+                         <User2 />
+                         <Link to="/profile">
+                         <Button variant="link">View Profile</Button>
+                         </Link>
+                       </div>
+                    )
+                  }
+                  
                   <div className="flex items-center my-2 text-gray-600">
                     <LogOut />
-                    <Button onClick={logoutHandler} variant="link">Logout</Button>
+                    <Button onClick={logoutHandler} variant="link">
+                      Logout
+                    </Button>
                   </div>
                 </div>
               </PopoverContent>
