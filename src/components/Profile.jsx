@@ -8,21 +8,39 @@ import { Label } from "./ui/label";
 import AppliedJobTable from "./AppliedJobTable";
 import UpdateProfileDialog from "./UpdateProfileDialog";
 import { useSelector } from "react-redux";
+import useGetAppliedJobs from "@/hooks/useGetAppliedJobs";
+import { Dialog, DialogContent } from "./ui/dialog";
 
 
 const isResume =true;
 const Profile = () => {
+  useGetAppliedJobs();
   const [open,setOpen]= useState(false);
+  const [openPhoto, setOpenPhoto] = useState(false);
   const {user} = useSelector(store=>store.auth);
   return (
     <div>
       <Navbar />
+      <div className="h-16"></div>
       <div className="max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-5 p-8">
         <div className="flex justify-between">
           <div className="flex items-center gap-4">
-            <Avatar className="h-24 w-24">
-              <AvatarImage src="https://i.pinimg.com/736x/db/4b/bd/db4bbdb49d44d22ec2ecc467a77c8182.jpg  " />
+            <Avatar className="h-24 w-24 cursor-pointer"
+                    onClick={() => setOpenPhoto(true)}
+                 >
+              <AvatarImage src={user?.profile?.profilePhoto} />
             </Avatar>
+             <Dialog open={openPhoto} onOpenChange={setOpenPhoto}>
+               <DialogContent className="max-w-md p-2">
+                  <div className="flex justify-center items-center">
+                    <img
+                      src={user?.profile?.profilePhoto}
+                      alt="Profile"
+                      className="w-full max-h-[70vh] object-contain rounded-lg"
+                    />
+                  </div>
+               </DialogContent>
+             </Dialog>
             <div>
               <h1 className="font-medium text-xl">{user?.fullname}</h1>
               <p>

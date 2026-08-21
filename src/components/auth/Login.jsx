@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -19,7 +19,7 @@ const Login = () => {
     password: "",
     role: "",
   });
-  const {loading} = useSelector((state) => state.auth);
+  const {loading,user} = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const changeEventHandler = (e) => {
@@ -39,7 +39,7 @@ const Login = () => {
         });
         if(res.data.success){
           console.log(res.data);
-console.log(res.data.user);
+          console.log(res.data.user);
           dispatch(setUser(res.data.user));
           navigate("/");
           toast.success(res.data.message);
@@ -53,9 +53,16 @@ console.log(res.data.user);
         dispatch(setLoading(false));
       }
   }
+  useEffect(()=>{
+     if(user){
+      navigate("/")
+     }
+  },[])
+
   return (
     <div>
       <Navbar />
+      <div className="h-16"></div>
       <div className="flex items-center justify-center  max-w-5xl mx-auto">
         <form
           onSubmit={submitHandler}

@@ -20,6 +20,7 @@ const Home = () => {
   return (
     <div>
       <Navbar/>
+      <div className="h-16"></div>
       <HeroSection/>
       <CategoryCarousel/>
       <LatestJobs/>

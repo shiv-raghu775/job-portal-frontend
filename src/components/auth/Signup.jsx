@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import { Input } from "../ui/input";
@@ -23,7 +23,7 @@ const Signup = () => {
      role:"",
      file:""
   });
-  const {loading} = useSelector((state) => state.auth);
+  const {loading,user} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
  
@@ -67,9 +67,15 @@ const Signup = () => {
               dispatch(setLoading(false));
      }
   }
+   useEffect(()=>{
+       if(user){
+        navigate("/")
+       }
+    },[])
   return (
     <div>
       <Navbar />
+      <div className="h-16"></div>
       <div className="flex items-center justify-center  max-w-5xl mx-auto">
         <form
           onSubmit={submitHandler}

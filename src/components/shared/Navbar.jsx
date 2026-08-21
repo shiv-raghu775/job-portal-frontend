@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "framer-motion";
 import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Avatar, AvatarImage } from "../ui/avatar";
@@ -34,31 +34,61 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="bg-white">
+    <div className="bg-white fixed top-0 left-0 w-full z-50 shadow-sm">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
         <div>
           <h1 className="text-2xl font-bold">
-            Job<span className="text-[#F83002]">Portal</span>
+            <Link to="/">
+              {" "}
+              Job<span className="text-[#F83002]">Portal</span>
+            </Link>
           </h1>
         </div>
 
         <div className="flex items-center gap-12">
           <ul className="flex font-medium items-center gap-5">
-            {
-              user && user.role === 'recruiter' ? (
-                <>
-                   <li><Link to="/admin/companies">Companies</Link></li>
-                   <li><Link to="/admin/jobs">Jobs</Link></li>
-                </>
-              ):(
-                <>
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/jobs">Jobs</Link></li>
-                  <li><Link to="/browse">Browse</Link></li>
-                </>
-              )
-            }
-            
+            {user && user.role === "recruiter" ? (
+              <>
+                <motion.li
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <Link to="/admin/companies">Companies</Link>
+                </motion.li>
+                <motion.li
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <Link to="/admin/jobs">Jobs</Link>
+                </motion.li>
+              </>
+            ) : (
+              <>
+                <motion.li
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <Link to="/">Home</Link>
+                </motion.li>
+                <motion.li
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <Link to="/jobs">Jobs</Link>
+                </motion.li>
+                <motion.li
+                  whileHover={{ y: -3, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <Link to="/browse">Browse</Link>
+                </motion.li>
+              </>
+            )}
           </ul>
           {!user ? (
             <div className="flex items-center gap-2">
@@ -74,12 +104,19 @@ const Navbar = () => {
           ) : (
             <Popover>
               <PopoverTrigger asChild>
-                <Avatar className="cursor-pointer">
-                  <AvatarImage
-                    src={user?.profile?.profilePhoto}
-                    alt="@shadcn"
-                  />
-                </Avatar>
+                <motion.div
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                  className="cursor-pointer"
+                >
+                  <Avatar className="cursor-pointer">
+                    <AvatarImage
+                      src={user?.profile?.profilePhoto}
+                      alt="@shadcn"
+                    />
+                  </Avatar>
+                </motion.div>
               </PopoverTrigger>
               <PopoverContent className="w-80 bg-white">
                 <div className="flex gap-4 space-y-1">
@@ -97,17 +134,15 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="flex flex-col  text-gray-600">
-                  {
-                    user && user.role ==='student'&& (
-                       <div className="flex  items-center text-gray-600">
-                         <User2 />
-                         <Link to="/profile">
-                         <Button variant="link">View Profile</Button>
-                         </Link>
-                       </div>
-                    )
-                  }
-                  
+                  {user && user.role === "student" && (
+                    <div className="flex  items-center text-gray-600">
+                      <User2 />
+                      <Link to="/profile">
+                        <Button variant="link">View Profile</Button>
+                      </Link>
+                    </div>
+                  )}
+
                   <div className="flex items-center my-2 text-gray-600">
                     <LogOut />
                     <Button onClick={logoutHandler} variant="link">
