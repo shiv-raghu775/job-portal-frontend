@@ -1,6 +1,6 @@
-# 💼 Job Portal — MERN Stack
+# 💼 Job Portal — mein Stack
 
-A full-stack **Job Portal web application** built using the MERN stack, where **job seekers can search and apply for jobs** and **recruiters can create companies, post jobs, and manage applications**.
+A full-stack **Job Portal web application** built using the bern stack, where **job seekers can search and apply for jobs** and **recruiters can create companies, post jobs, and manage applications**.
 
 The project focuses on real-world authentication, REST APIs, role-based functionality, job management, application tracking, and a responsive modern UI.
 
@@ -8,9 +8,9 @@ The project focuses on real-world authentication, REST APIs, role-based function
 
 ## 🚀 Live Demo
 
-🔗 **Live Website:** [Add your deployed frontend URL here]
+🔗 **Live Website:** [https://job-portal-frontend-hazel.vercel.app/]
 
-🔗 **Backend API:** [Add your deployed backend URL here]
+🔗 **Backend API:** [(https://job-portal-backend-alwi.onrender.com)]
 
 ---
 

@@ -35,9 +35,9 @@ const Navbar = () => {
   };
   return (
     <div className="bg-white fixed top-0 left-0 w-full z-50 shadow-sm">
-      <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
+      <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-3">
         <div>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold whitespace-nowrap">
             <Link to="/">
               {" "}
               Job<span className="text-[#F83002]">Portal</span>
@@ -45,8 +45,8 @@ const Navbar = () => {
           </h1>
         </div>
 
-        <div className="flex items-center gap-12">
-          <ul className="flex font-medium items-center gap-5">
+        <div className="flex items-center gap-1">
+          <ul className="flex items-center gap-2 font-medium text-xs whitespace-nowrap">
             {user && user.role === "recruiter" ? (
               <>
                 <motion.li
@@ -54,14 +54,18 @@ const Navbar = () => {
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <Link to="/admin/companies">Companies</Link>
+                  <Link to="/admin/companies" className="whitespace-nowrap">
+                    Companies
+                  </Link>
                 </motion.li>
                 <motion.li
                   whileHover={{ y: -3, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <Link to="/admin/jobs">Jobs</Link>
+                  <Link to="/admin/jobs" className="whitespace-nowrap">
+                    Jobs
+                  </Link>
                 </motion.li>
               </>
             ) : (
@@ -71,32 +75,34 @@ const Navbar = () => {
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <Link to="/">Home</Link>
+                  <Link to="/" className="whitespace-nowrap">Home</Link>
                 </motion.li>
                 <motion.li
                   whileHover={{ y: -3, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <Link to="/jobs">Jobs</Link>
+                  <Link to="/jobs"className="whitespace-nowrap">Jobs</Link>
                 </motion.li>
                 <motion.li
                   whileHover={{ y: -3, scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ type: "spring", stiffness: 400 }}
                 >
-                  <Link to="/browse">Browse</Link>
+                  <Link to="/browse" className="whitespace-nowrap">Browse</Link>
                 </motion.li>
               </>
             )}
           </ul>
           {!user ? (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2 shrink-0">
               <Link to="/Login">
-                <Button variant="outline">Login</Button>
+                <Button variant="outline" 
+                className="h-8 px-2 sm:px-3 text-xs sm:text-sm"
+                >Login</Button>
               </Link>
               <Link to="/Signup">
-                <Button className="bg-[#692dcf] hover:bg-[#45119fe4] text-white">
+                <Button className="bg-[#692dcf] hover:bg-[#45119fe4] text-white h-8 px-2 sm:px-3 text-xs sm:text-sm">
                   Signup
                 </Button>
               </Link>
