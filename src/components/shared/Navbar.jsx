@@ -35,7 +35,7 @@ const Navbar = () => {
   };
   return (
     <div className="bg-white fixed top-0 left-0 w-full z-50 shadow-sm">
-      <div className="flex items-center justify-between mx-auto max-w-7xl h-16 px-3">
+      <div className="flex items-center gap-1 sm:gap-2 justify-between px-2 sm:px-4 py-2">
         <div>
           <h1 className="text-lg sm:text-xl md:text-2xl font-bold whitespace-nowrap">
             <Link to="/">
