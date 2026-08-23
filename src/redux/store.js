@@ -15,7 +15,6 @@ import {
     REGISTER,
 } from "redux-persist";
 
-// Custom storage wrapper
 const storage = {
     getItem: async (key) => {
         return localStorage.getItem(key);
@@ -34,6 +33,7 @@ const persistConfig = {
     key: "root",
     version: 1,
     storage,
+    blacklist: ["auth"],
 };
 
 const rootReducer = combineReducers({

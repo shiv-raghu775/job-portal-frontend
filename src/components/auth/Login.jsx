@@ -20,6 +20,11 @@ const Login = () => {
     role: "",
   });
   const {loading,user} = useSelector((state) => state.auth);
+
+console.log("LOGIN PAGE AUTH:", {
+    loading,
+    user
+});
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const changeEventHandler = (e) => {
