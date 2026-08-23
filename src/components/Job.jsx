@@ -41,7 +41,7 @@ const Job = ({job}) => {
           {job?.description}
         </p>
       </div>
-      <div className="flex items-center gap-2 mt-4">
+      <div className="flex flex-wrap items-center gap-2 mt-4">
         <Badge
           className="text-blue-700 rounded-full bg-slate-100 font-bold "
           variant="ghost"
@@ -61,7 +61,7 @@ const Job = ({job}) => {
           {job?.salary}LPA
         </Badge>
       </div>
-      <div className="flex items-center gap-4 mt-4">
+      <div className="flex flex-wrap items-center gap-3 mt-4">
         <Button onClick={()=>navigate(`/description/${job?._id}`)} variant="outline">Details</Button>
         <Button className="bg-[#7209b7] text-white hover:bg-[#560bad]">Save for Later</Button>
       </div>

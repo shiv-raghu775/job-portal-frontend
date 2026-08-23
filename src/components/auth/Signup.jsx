@@ -52,7 +52,7 @@ const Signup = () => {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-          withCredentials: true,
+          withCredentials: "true",
         });
         if(res.data.success){
           navigate("/Login");
