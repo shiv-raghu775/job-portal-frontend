@@ -29,27 +29,27 @@ const storage = {
     },
 };
 
-const persistConfig = {
-    key: "root",
-    version: 1,
+// Auth ke andar sirf user persist hoga
+const authPersistConfig = {
+    key: "auth",
     storage,
-    blacklist: ["auth"],
+    whitelist: ["user"],
 };
 
+const persistedAuthReducer = persistReducer(
+    authPersistConfig,
+    authSlice
+);
+
 const rootReducer = combineReducers({
-    auth: authSlice,
+    auth: persistedAuthReducer,
     job: jobSlice,
     company: companySlice,
     application: applicationSlice,
 });
 
-const persistedReducer = persistReducer(
-    persistConfig,
-    rootReducer
-);
-
 const store = configureStore({
-    reducer: persistedReducer,
+    reducer: rootReducer,
 
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
